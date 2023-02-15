@@ -19,6 +19,7 @@ function Post(props) {
    const { user, image, likes } = props.postData;
    const [isLiked, setIsLiked] = useState(false);
    const [totalLikes, setTotalLikes] = useState(likes.totalLikes);
+   const [isSaved, setIsSaved] = useState(false);
    const [likeAnimation, setLikeAnimation] = useState(false);
 
    function handleLikePost() {
@@ -39,6 +40,10 @@ function Post(props) {
          setIsLiked(true);
          setTotalLikes(totalLikes + 1);
       }
+   }
+
+   function handleSavePost() {
+      setIsSaved(!isSaved);
    }
 
    return (
@@ -70,7 +75,7 @@ function Post(props) {
                   <ion-icon name='paper-plane-outline' />
                </div>
                <div>
-                  <ion-icon name='bookmark-outline' />
+                  <ion-icon name={isSaved ? 'bookmark' : 'bookmark-outline'} onClick={handleSavePost} />
                </div>
             </div>
 
