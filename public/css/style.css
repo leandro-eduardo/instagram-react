@@ -158,7 +158,6 @@ body {
    border: 1px solid #dbdbdb;
    display: flex;
    flex-direction: column;
-   /* margin-top: 18px; */
 }
 
 .post .header {
@@ -174,6 +173,23 @@ body {
    display: flex;
    align-items: center;
    font-weight: 500;
+}
+
+.post .footer .actions .liked {
+   color: #ff0000;
+}
+
+.scale-up-center {
+   animation: scale-up-center 0.3s;
+}
+
+@keyframes scale-up-center {
+   0% {
+      transform: scale(0.2);
+   }
+   100% {
+      transform: scale(1);
+   }
 }
 
 .post .header img {
@@ -194,8 +210,23 @@ body {
    cursor: pointer;
 }
 
+.post .content {
+   position: relative;
+}
+
 .post .content img {
    width: 100%;
+}
+
+.post .content ion-icon {
+   color: #ffffff;
+   position: absolute;
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   margin: auto;
+   font-size: 180px;
 }
 
 .post .footer .actions {
