@@ -5,9 +5,9 @@ export default function Suggestions() {
 
    return (
       <div className='suggestions'>
-         <div className='title'>
-            Sugestões para você
-            <div>Ver tudo</div>
+         <div>
+            <p className='light-grey text'>Sugestões para você</p>
+            <a className='dark-grey see-it-all'>Ver tudo</a>
          </div>
          {suggestions.map((suggestion, index) => (
             <Suggestion key={index} suggestionData={suggestion} />
@@ -17,19 +17,18 @@ export default function Suggestions() {
 }
 
 function Suggestion(props) {
-   const { user, isFollowing } = props.suggestionData;
+   const { user, profilePicture, isFollowing } = props.suggestionData;
 
    return (
-      <div className='suggestion'>
-         <div className='user'>
-            <img src={`assets/img/${user}.svg`} alt={user} />
-            <div className='text'>
-               <div className='user'>{user}</div>
-               <div className='reason'>{isFollowing ? 'Segue você' : 'Novo no Instagram'}</div>
+      <div className='suggested-profile'>
+         <div className='profile-info'>
+            <img src={profilePicture} alt='User profile picture' />
+            <div className='suggestion-username-and-hint'>
+               <a className='username'>{user}</a>
+               <p className='light-grey hint'>{isFollowing ? 'Segue você' : 'Novo no Instagram'}</p>
             </div>
          </div>
-
-         <div className='follow'>Seguir</div>
+         <a className='follow'>Seguir</a>
       </div>
    );
 }

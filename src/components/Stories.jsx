@@ -4,26 +4,27 @@ export default function Stories() {
    const stories = db.getStories();
 
    return (
-      <div className='stories'>
-         {stories.map((story, index) => (
-            <Story key={index} user={story.user} />
-         ))}
-
-         <div className='arrow'>
-            <ion-icon name='chevron-forward-circle'></ion-icon>
-         </div>
-      </div>
+      <>
+         <ul className='stories'>
+            {stories.map((story, index) => (
+               <Story key={index} storyData={story} />
+            ))}
+         </ul>
+         <ion-icon id='left-arrow' name='chevron-forward-circle' />
+      </>
    );
 }
 
 function Story(props) {
-   const { user } = props;
+   const { user, profilePicture } = props.storyData;
    return (
-      <div className='story'>
-         <div className='image'>
-            <img src={`./assets/img/${user}.svg`} alt={user} />
+      <li className='story'>
+         <div className='out-layer'>
+            <a>
+               <img src={profilePicture} alt='User profile picture' />
+            </a>
          </div>
-         <div className='user'>{user}</div>
-      </div>
+         <p>{user}</p>
+      </li>
    );
 }

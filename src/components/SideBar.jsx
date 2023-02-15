@@ -7,14 +7,48 @@ export default function SideBar() {
 
    return (
       <div className='sidebar'>
-         <User user={user} />
-         <Suggestions />
-         <div className='links'>
-            Sobre • Ajuda • Imprensa • API • Carreiras • Privacidade • Termos • Localizações • Contas mais
-            relevantes • Hashtags • Idioma
+         <div className='sidebar-content'>
+            <User user={user} />
+            <Suggestions />
+            <span className='sidebar-footer'>
+               <ul>
+                  <li>
+                     <a className='footer-link'>Sobre</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>Ajuda</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>Imprensa</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>API</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>Carreiras</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>Privacidade</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>Termos</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>Localizações</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>Contas mais relevantes</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>Hashtags</a>
+                  </li>
+                  <li>
+                     <a className='footer-link'>Idioma</a>
+                  </li>
+               </ul>
+            </span>
+            <span className='sidebar-footer'>© 2022 INSTAGRAM FROM META</span>
          </div>
-
-         <div className='copyright'>© 2021 INSTAGRAM DO FACEBOOK</div>
       </div>
    );
 }

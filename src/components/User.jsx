@@ -11,20 +11,24 @@ export default function User(props) {
       }
    }
 
-   function changeProfileImage() {
-      const newProfileImage = prompt('Informe a URL da nova imagem de perfil');
-      if (newProfileImage?.trim()) {
-         setUser({ ...user, profileImage: newProfileImage });
+   function changeProfilePicture() {
+      const newProfilePicture = prompt('Informe a URL da nova imagem de perfil');
+      if (newProfilePicture?.trim()) {
+         setUser({ ...user, profilePicture: newProfilePicture });
       }
    }
 
    return (
-      <div className='user'>
-         <img onClick={changeProfileImage} src={user.profileImage} alt='Imagem de perfil' />
-         <span className='text'>
-            <strong>{user.name}</strong>
-            <FiEdit onClick={changeName} />
-         </span>
+      <div className='user-info-sidebar'>
+         <img onClick={changeProfilePicture} src={user.profilePicture} alt='User profile picture' />
+         <div>
+            <div>
+               <p className='username'>{user.name}</p>
+               <FiEdit onClick={changeName} />
+            </div>
+
+            <p className='light light-grey'>{user.name.toLowerCase()}</p>
+         </div>
       </div>
    );
 }

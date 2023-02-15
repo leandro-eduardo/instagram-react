@@ -16,7 +16,8 @@ export default function Posts() {
 }
 
 function Post(props) {
-   const { user, image, likes } = props.postData;
+   const { user, profilePicture, postContent, type, likes, comments, totalComments, daysAgo } =
+      props.postData;
    const [isLiked, setIsLiked] = useState(false);
    const [totalLikes, setTotalLikes] = useState(likes.totalLikes);
    const [isSaved, setIsSaved] = useState(false);
@@ -48,23 +49,28 @@ function Post(props) {
 
    return (
       <div className='post'>
-         <div className='header'>
-            <div className='user'>
-               <img src={`assets/img/${user}.svg`} alt={user} />
-               {user}
-            </div>
-            <div className='actions'>
-               <ion-icon name='ellipsis-horizontal' />
-            </div>
+         <div className='post-header'>
+            <a className='profile-info'>
+               <img src={profilePicture} alt={user} />
+               <p className='username'>{user}</p>
+            </a>
+            <ion-icon name='ellipsis-horizontal' />
          </div>
-
-         <div className='content'>
-            {likeAnimation && <ion-icon name='heart' class='white-heart scale-up-center' />}
-            <img src={`assets/img/${image}.svg`} alt={image} onDoubleClick={handleLikeByPostImage} />
+         <div className='post-item'>
+            {type === 'image' ? (
+               <>
+                  {likeAnimation && <ion-icon name='heart' class='white-heart scale-up-center' />}
+                  <img src={postContent} alt='Post Content' onDoubleClick={handleLikeByPostImage} />
+               </>
+            ) : (
+               <video controls muted autoPlay>
+                  <source src={postContent} type='video/mp4'></source>
+                  <source src={postContent} type='video/ogg'></source>
+               </video>
+            )}
          </div>
-
-         <div className='footer'>
-            <div className='actions'>
+         <div className='post-interaction'>
+            <div className='post-interaction-icons'>
                <div>
                   <ion-icon
                      name={isLiked ? 'heart' : 'heart-outline'}
@@ -74,18 +80,46 @@ function Post(props) {
                   <ion-icon name='chatbubble-outline' />
                   <ion-icon name='paper-plane-outline' />
                </div>
-               <div>
-                  <ion-icon name={isSaved ? 'bookmark' : 'bookmark-outline'} onClick={handleSavePost} />
-               </div>
+               <ion-icon name={isSaved ? 'bookmark' : 'bookmark-outline'} onClick={handleSavePost} />
             </div>
 
-            <div className='likes'>
-               <img src={`assets/img/${likes.userWhoLiked}.svg`} alt={likes.userWhoLiked} />
-               <div className='text'>
-                  Curtido por <strong>{likes.userWhoLiked}</strong> e
-                  <strong> outras {totalLikes} pessoas</strong>
-               </div>
+            <div className='post-likes'>
+               <img src={likes.profilePicture} alt={likes.user} />
+               <p>
+                  Curtido por <span className='bold'>{likes.user}</span> e outras
+                  <a className='bold'> {totalLikes} pessoas</a>
+               </p>
             </div>
+            {totalComments > 5 && (
+               <div className='view-more-comments'>
+                  <a>Ver todos os {totalComments} comentários</a>
+               </div>
+            )}
+
+            {comments.length !== 0 && (
+               <div className='comments-section'>
+                  {comments.map((comment, index) => (
+                     <div key={index} className='comment'>
+                        <p>
+                           <a className='bold'>{comment.user} </a>
+                           {comment.text}
+                        </p>
+                        <ion-icon name='heart-outline' />
+                     </div>
+                  ))}
+               </div>
+            )}
+
+            {daysAgo > 0 && (
+               <div className='post-time-ago'>
+                  <p>HÁ {daysAgo} DIAS</p>
+               </div>
+            )}
+         </div>
+         <div className='add-comment'>
+            <ion-icon name='happy-outline' />
+            <textarea name='add-comment' id='add-comment' placeholder='Adicione um comentário...' />
+            <button>Publicar</button>
          </div>
       </div>
    );

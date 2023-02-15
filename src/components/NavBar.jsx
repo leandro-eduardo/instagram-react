@@ -1,27 +1,24 @@
 export default function NavBar() {
    return (
-      <div className='navbar'>
-         <div className='container'>
-            <div className='logo'>
-               <ion-icon name='logo-instagram'></ion-icon>
-               <div className='separator'></div>
-               <img src='./assets/img/logo.png' alt='logo' />
+      <div className='header-container'>
+         <nav className='header-desktop'>
+            <div className='header-left'>
+               <ion-icon name='logo-instagram' />
+               <div className='division-border' />
+               <img className='instagram-logo' src='./assets/logo.png' alt='Instagram Logo' />
             </div>
-
-            <div className='search'>
-               <input type='text' placeholder='Pesquisar' />
+            <input type='text' name='search' id='search' placeholder='Pesquisar' />
+            <div className='header-right'>
+               <ion-icon name='paper-plane-outline' />
+               <ion-icon name='compass-outline' />
+               <ion-icon name='heart-outline' />
+               <ion-icon name='person-outline' />
             </div>
-
-            <div className='icons'>
-               <ion-icon name='paper-plane-outline'></ion-icon>
-               <ion-icon name='compass-outline'></ion-icon>
-               <ion-icon name='heart-outline'></ion-icon>
-               <ion-icon name='person-outline'></ion-icon>
-            </div>
-
-            <div className='mobile-icons'>
-               <ion-icon name='paper-plane-outline'></ion-icon>
-            </div>
+         </nav>
+         <div className='header-mobile'>
+            <ion-icon name='logo-instagram' />
+            <img className='instagram-logo' src='./assets/logo.png' alt='Instagram Logo' />
+            <ion-icon name='paper-plane-outline' />
          </div>
       </div>
    );
